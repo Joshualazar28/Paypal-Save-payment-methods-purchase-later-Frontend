@@ -1,0 +1,19 @@
+
+      <div id="paypal-buttons-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=CLIENT-ID&merchant-id=MERCHANT-ID" data-user-id-token=""></script>
+<script>
+    window.paypal.Buttons({
+        createVaultSetupToken: async () => {
+                // Call your server API to generate a setup token
+                // and return it here as a string
+                const result = await fetch("example.com/create/setup/token", { method: "POST" })
+                return result.token
+        },
+        onApprove: async ({ vaultSetupToken }) => {
+            return fetch("example.com/create/payment/token", { body: JSON.stringify({ vaultSetupToken }) })
+        },
+        onError: (error) => {
+            console.log("An error occurred: ", error)
+        }
+    }).render("#paypal-buttons-container");
+</script>

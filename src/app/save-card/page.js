@@ -1,11 +1,9 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
 import { loadScript } from "@paypal/paypal-js";
 import { useSearchParams } from "next/navigation";
 const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL;
 const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
-
 export default function SaveCardPage() {
   const searchParams = useSearchParams();
  const customerIdFromURL = searchParams?.get("customerId") || "";
